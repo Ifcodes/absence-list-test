@@ -31,7 +31,7 @@ const useFetchAbsences = () => {
             )
             .then((data) => ({
               ...absence,
-              ...data,
+              ...data.data,
             }))
             .catch((err) => {
               console.log(err);
