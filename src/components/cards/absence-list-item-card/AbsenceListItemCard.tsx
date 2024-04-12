@@ -3,7 +3,7 @@ import { IAbsenceDataType } from "../../../utils/types";
 import ConflictIndicatorRibbon from "../../common/conflict-indicator-ribbon/ConflictIndicatorRibbon";
 
 interface IAbsenceListItemCardProps extends IAbsenceDataType {
-  handleCardClick: () => void;
+  handleCardClick?: () => void;
 }
 
 const AbsenceListItemCard = ({
@@ -19,10 +19,9 @@ const AbsenceListItemCard = ({
   const approvalStatusColor = approved ? "#075E54" : "#dc2626";
   const endDate = getLastDay(days, startDate);
 
-  console.log({ approvalStatusColor });
   return (
     <div
-      className="w-full border border-solid border-gray-100 my-4 rounded-lg p-4 cursor-pointer hover:bg-gray-50"
+      className="w-full border border-solid border-gray-300 my-4 rounded-lg p-4 cursor-pointer hover:bg-gray-50"
       onClick={handleCardClick}
     >
       <div className="mb-4 flex">

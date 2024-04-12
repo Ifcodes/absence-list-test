@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { IAbsenceDataType } from "../utils/types";
 
-interface IAbsenceWithConflictType extends IAbsenceDataType {
+export interface IAbsenceWithConflictType extends IAbsenceDataType {
   conflicts: boolean;
 }
 const useFetchAbsences = () => {
@@ -12,14 +12,13 @@ const useFetchAbsences = () => {
   const [error, setError] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const getabsences = async () => {
+  const getAbsences = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch(
         "https://front-end-kata.brighthr.workers.dev/api/absences"
       );
       const absences: any = await response.json();
-
-      console.log({ absences });
 
       if (absences && absences.length > 0) {
         const newAbsenceList: any[] = [];
@@ -41,20 +40,27 @@ const useFetchAbsences = () => {
         });
 
         const data = await Promise.all(newAbsenceList);
-        console.log({ data });
         setAbsenceList(data);
+        setIsLoading(false);
+      } else {
+        setError("No record found");
+        setIsLoading(false);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.log({ error }, error?.message);
+      setError("Something went wrong, Please reload the page.");
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    getabsences();
+    getAbsences();
   }, []);
 
   return {
     absenceList,
+    error,
+    isLoading,
   };
 };
 
