@@ -21,11 +21,12 @@ const AbsenceListItemCard = ({
 
   return (
     <div
+      data-testid="list-item-card"
       className="w-full border border-solid border-gray-300 my-4 rounded-lg p-4 cursor-pointer hover:bg-gray-50"
-      onClick={handleCardClick}
     >
       <div className="mb-4 flex">
         <span
+          role="approval_status"
           style={{
             backgroundColor: `${approvalStatusColor}`,
             borderColor: `${approvalStatusColor}`,
@@ -38,12 +39,21 @@ const AbsenceListItemCard = ({
       </div>
       <div className="flex justify-between">
         <div>
-          <p className="capitalize font-semibold">
+          <p
+            onClick={handleCardClick}
+            data-testid="full_name"
+            className="capitalize font-semibold hover:underline"
+          >
             {firstName} {lastName}
           </p>
-          <p className="mt-2">{absenceType}</p>
+          <p data-testid="absence_type" className="mt-2">
+            {absenceType}
+          </p>
         </div>
-        <p className=" text-sm font-medium opacity-70">
+        <p
+          data-testid="date_render"
+          className=" text-sm font-medium opacity-70"
+        >
           {formatDateString(startDate)} - {formatDateString(endDate)}
         </p>
       </div>

@@ -1,5 +1,5 @@
 export interface IAbsenceDataType {
-  id: string;
+  id: number;
   startDate: Date | string;
   days: number;
   absenceType: string;

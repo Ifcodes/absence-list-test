@@ -7,7 +7,7 @@ interface ILoadingPageProps {
 }
 const Loading = ({ isLoading, error, count }: ILoadingPageProps) => {
   return (
-    <div className="w-full">
+    <>
       {isLoading ? (
         Array(count)
           .fill("")
@@ -19,7 +19,7 @@ const Loading = ({ isLoading, error, count }: ILoadingPageProps) => {
           {error}
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 

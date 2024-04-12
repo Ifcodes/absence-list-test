@@ -11,6 +11,7 @@ const Home = () => {
   const { filteredList, setSearchField, searchField, setSortValue, sortValue } =
     useFilter();
   const navigate = useNavigate();
+
   const sortItems = [
     { key: "Sort by", value: "sortBy" },
     { key: "Name", value: "name" },
@@ -27,7 +28,7 @@ const Home = () => {
   return (
     <>
       <h1 className="font-bold text-2xl">Absences</h1>
-      <p>List of all absence record.</p>
+      <p data-testid="description">List of all absence record.</p>
       <div className="mt-10 flex gap-3">
         <SearchInput
           value={searchField}
@@ -47,10 +48,10 @@ const Home = () => {
             return (
               <AbsenceListItemCard
                 key={`${absence.id}`}
-                {...absence}
                 handleCardClick={() =>
                   navigate(`absence-detail/${absence.employee.id}`)
                 }
+                {...absence}
               />
             );
           })}

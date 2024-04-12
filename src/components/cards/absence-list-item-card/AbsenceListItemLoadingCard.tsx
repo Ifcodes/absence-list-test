@@ -1,5 +1,3 @@
-import React from "react";
-
 const AbsenceListItemLoadingCard = () => {
   return (
     <div className="animate-pulse w-full border border-solid border-gray-300 my-4 rounded-lg p-4">
