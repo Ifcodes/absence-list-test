@@ -26,6 +26,7 @@ export const SearchInput = ({ onSearch, ...props }: ISearchInputProps) => {
       <div className="w-full rounded-lg border border-solid border-gray-300 flex items-center py-2 px-3">
         <BiSearch size={20} opacity={isFocused ? 1 : 0.5} />
         <input
+          data-testid="search"
           className=" flex-grow border-none outline-none ml-3"
           type="text"
           placeholder="Search"

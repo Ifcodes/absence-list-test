@@ -6,21 +6,30 @@ interface ILoadingPageProps {
   count: number;
 }
 const Loading = ({ isLoading, error, count }: ILoadingPageProps) => {
-  return (
-    <>
-      {isLoading ? (
-        Array(count)
+  if (isLoading) {
+    return (
+      <div data-testid="skeletons">
+        {Array(count)
           .fill("")
           .map((_val, index) => (
             <AbsenceListItemLoadingCard key={`loading-key-${index}`} />
-          ))
-      ) : error ? (
-        <div className="w-full h-[40vh] text-center flex items-center justify-center">
-          {error}
-        </div>
-      ) : null}
-    </>
-  );
+          ))}
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div
+        data-testid="error"
+        className="w-full h-[40vh] text-center flex items-center justify-center"
+      >
+        {error}
+      </div>
+    );
+  }
+
+  return null;
 };
 
 export default Loading;
