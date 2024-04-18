@@ -5,6 +5,7 @@ import Home from "../pages/home";
 import { BrowserRouter } from "react-router-dom";
 import { server } from "../mocks/server";
 import { HttpResponse, http } from "msw";
+import App from "../App";
 
 describe("should render home features and perform user events ", () => {
   const user = userEvent.setup();
@@ -111,5 +112,16 @@ describe("should render home features and perform user events ", () => {
     expect(screen.queryAllByTestId("list-item-card")[0]).toHaveTextContent(
       "Enya"
     );
+  });
+
+  test("should navigate to a product details page", async () => {
+    render(<App />, { wrapper: BrowserRouter });
+
+    expect(await screen.findByText("Absences")).toBeInTheDocument();
+    const selectedUser = screen.getByText("Enya Behm");
+
+    await user.click(selectedUser);
+
+    expect(screen.getByText("Employee Absence")).toBeInTheDocument();
   });
 });
