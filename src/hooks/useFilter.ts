@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import useFetchAbsences, { IAbsenceWithConflictType } from "./useFetchAbsences";
 
 const useFilter = () => {
-  const { absenceList } = useFetchAbsences();
+  const { absenceList, isLoading, error } = useFetchAbsences();
   const [searchField, setSearchField] = useState("");
   const [sortedList, setSortedList] = useState<IAbsenceWithConflictType[]>([]);
   const [sortValue, setSortValue] = useState("");
@@ -75,6 +75,8 @@ const useFilter = () => {
     filteredList,
     searchField,
     sortValue,
+    isLoading,
+    error,
     handleSort,
     setSearchField,
     setSortValue,

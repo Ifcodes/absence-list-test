@@ -1,15 +1,20 @@
 import { SearchInput } from "../../components/inputs/search-input/SearchInput";
 import Select from "../../components/inputs/select/Select";
 import Loading from "../../components/loading/Loading";
-import useFetchAbsences from "../../hooks/useFetchAbsences";
 import useFilter from "../../hooks/useFilter";
 import AbsenceListItemCard from "../../components/cards/absence-list-item-card/AbsenceListItemCard";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const { isLoading, error } = useFetchAbsences();
-  const { filteredList, setSearchField, searchField, setSortValue, sortValue } =
-    useFilter();
+  const {
+    isLoading,
+    error,
+    filteredList,
+    setSearchField,
+    searchField,
+    setSortValue,
+    sortValue,
+  } = useFilter();
   const navigate = useNavigate();
 
   const sortItems = [
